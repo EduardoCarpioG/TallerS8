@@ -4,6 +4,7 @@
 #define MAX_PRODUCTOS 200
 #define MAX_CANTIDAD 200
 #define MAX_TIEMPO 200
+
 #define NOMBRE_LEN 50
 #define MAX_RECURSOS 10
 void ingresarProductos(Producto productos[], int *total_productos);
