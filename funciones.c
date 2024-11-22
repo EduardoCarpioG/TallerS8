@@ -34,8 +34,8 @@ void ingresarProductos(Producto productos[], int *total_productos) {
         }
     } while (p.cantidad < 0 || p.cantidad > MAX_CANTIDAD);
     do {
-        printf("Ingrese el tiempo de fabricacion del producto (1 - %d): ", MAX_TIEMPO);
-        scanf("%d", &p.tiempo_fabricacion);
+         printf("Ingrese el tiempo de fabricacion (en minutos): ");
+        scanf("%d", &productos[*total_productos].tiempo_fabricacion);
         if (p.tiempo_fabricacion < 0 || p.tiempo_fabricacion > MAX_TIEMPO) {
             printf("Tiempo de fabricacion invalido. Debe estar entre 1 y %d.\n", MAX_TIEMPO);
         }
@@ -128,20 +128,30 @@ void eliminarProducto(Producto productos[], int *total_productos) {
 void verificarCumplimiento(Producto productos[], int total_productos, int tiempoLimite, int recursosLimite) {
     int tiempo_total = 0;
     int recursos_totales[MAX_RECURSOS] = {0};
+
+    // Calcular el tiempo total de fabricación y los recursos totales
     for (int i = 0; i < total_productos; i++) {
         tiempo_total += productos[i].tiempo_fabricacion * productos[i].cantidad; // Tiempo total
         for (int j = 0; j < productos[i].total_recursos; j++) {
             recursos_totales[j] += productos[i].cantidad_recursos[j] * productos[i].cantidad; // Recursos totales
-        }}
+        }
+    }
+
+    // Mostrar el tiempo total de fabricación requerido
     printf("Tiempo total de fabricación requerido: %d\n", tiempo_total);
+    
+    // Mostrar los recursos necesarios
     printf("Recursos necesarios:\n");
-    int recursos_suficientes = 1;
+    int recursos_suficientes = 1; // Suponemos que hay suficientes recursos
     for (int j = 0; j < MAX_RECURSOS; j++) {
         if (recursos_totales[j] > 0) {
             printf("   - Recurso %d: %d\n", j + 1, recursos_totales[j]);
             if (recursos_totales[j] > recursosLimite) {
-                recursos_suficientes = 0;
-            }}}
+                recursos_suficientes = 0; // Marcamos que no hay suficientes recursos
+            }
+        }
+    }
+    // Verificar si se cumplen las condiciones
     if (tiempo_total <= tiempoLimite && recursos_suficientes) {
         printf("La fábrica puede cumplir con la demanda.\n");
     } else {
@@ -150,4 +160,7 @@ void verificarCumplimiento(Producto productos[], int total_productos, int tiempo
             printf("   - Excede el tiempo de producción disponible.\n");
         }
         if (!recursos_suficientes) {
-            printf("   - No hay suficientes recursos disponibles.\n");}}}
+            printf("   - No hay suficientes recursos disponibles.\n");
+        }
+    }
+}

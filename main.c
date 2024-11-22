@@ -15,7 +15,7 @@ int main() {
     Producto productos[MAX_PRODUCTOS];
     int total_productos = 0;
     int opcion;
-    int tiempoLimite = 100;
+    int tiempoLimite = 1000;
     int recursosLimite = 50;
     do {
         printf("\nMenu:\n");
@@ -45,12 +45,17 @@ int main() {
             case 5:
                 verificarCumplimiento(productos, total_productos, tiempoLimite, recursosLimite);
                 break;
-            case 6:
+             case 6: 
+                printf("Ingrese el nuevo tiempo límite de producción: ");
+                scanf("%d", &tiempoLimite);
+                printf("Tiempo límite de producción actualizado a: %d\n", tiempoLimite);
+                break;
+            case 7:
                 printf("Saliendo...\n");
                 break;
             default:
                 printf("Opcion no valida. Intente de nuevo.\n");
         }
-    } while (opcion != 6);
+    } while (opcion != 7);
     return 0;
 }
