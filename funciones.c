@@ -9,7 +9,7 @@
 #define MAX_RECURSOS 10
 // Funcion para mostrar los productos
 void mostrarProductos(Producto productos[], int total_productos) {
-    int tiempoTotal = 0;
+    int tiempo_total = 0;
     printf("\nLista de productos:\n");
     for (int i = 0; i < total_productos; i++) {
         printf("ID: %d | Nombre: %s | Cantidad: %d | Tiempo de fabricacion: %d | Recursos:\n",
@@ -17,7 +17,7 @@ void mostrarProductos(Producto productos[], int total_productos) {
         for (int j = 0; j < productos[i].total_recursos; j++) {
             printf("   - %s: %d\n", productos[i].nombre_recursos[j], productos[i].cantidad_recursos[j]);
              printf("Producto %d: %s, Tiempo de producción: %d\n", i + 1, productos[i].nombre, productos[i].tiempo_fabricacion);
-        tiempoTotal += productos[i].tiempo_fabricacion; // Sumar el tiempo de producción
+        tiempo_total += productos[i].tiempo_fabricacion; // Sumar el tiempo de producción
         }}}
 void ingresarProductos(Producto productos[], int *total_productos) {
     if (*total_productos >= MAX_PRODUCTOS) {

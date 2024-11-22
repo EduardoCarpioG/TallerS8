@@ -4,7 +4,6 @@
 #define MAX_PRODUCTOS 200
 #define MAX_CANTIDAD 200
 #define MAX_TIEMPO 200
-
 #define NOMBRE_LEN 50
 #define MAX_RECURSOS 10
 void ingresarProductos(Producto productos[], int *total_productos);
@@ -25,7 +24,8 @@ int main() {
         printf("3. Eliminar producto\n");
         printf("4. Mostrar productos\n");
         printf("5. Verificar cumplimiento de demanda\n");
-        printf("6. Salir\n");
+        printf("6. Tiempo limite de produccion\n");
+        printf("7. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
         getchar(); // Limpiar el buffer
