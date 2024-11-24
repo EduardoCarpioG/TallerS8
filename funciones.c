@@ -34,8 +34,8 @@ void ingresarProductos(Producto productos[], int *total_productos) {
         }
     } while (p.cantidad < 0 || p.cantidad > MAX_CANTIDAD);
     do {
-         printf("Ingrese el tiempo de fabricacion (en minutos): ");
-        scanf("%d", &productos[*total_productos].tiempo_fabricacion);
+        printf("Ingrese el tiempo de fabricacion del producto (1 - %d): ", MAX_TIEMPO);
+        scanf("%d", &p.tiempo_fabricacion);
         if (p.tiempo_fabricacion < 0 || p.tiempo_fabricacion > MAX_TIEMPO) {
             printf("Tiempo de fabricacion invalido. Debe estar entre 1 y %d.\n", MAX_TIEMPO);
         }
@@ -116,7 +116,7 @@ void eliminarProducto(Producto productos[], int *total_productos) {
     printf("Ingrese el ID del producto a eliminar (0 - %d): ", *total_productos - 1);
     scanf("%d", &id);
     if (id < 0 || id >= *total_productos) {
-        printf("ID inválido.\n");
+        printf("ID invalido.\n");
         return;
     }
     for (int i = id; i < *total_productos - 1; i++) {
@@ -129,38 +129,30 @@ void verificarCumplimiento(Producto productos[], int total_productos, int tiempo
     int tiempo_total = 0;
     int recursos_totales[MAX_RECURSOS] = {0};
 
-    // Calcular el tiempo total de fabricación y los recursos totales
     for (int i = 0; i < total_productos; i++) {
         tiempo_total += productos[i].tiempo_fabricacion * productos[i].cantidad; // Tiempo total
         for (int j = 0; j < productos[i].total_recursos; j++) {
             recursos_totales[j] += productos[i].cantidad_recursos[j] * productos[i].cantidad; // Recursos totales
         }
     }
-
-    // Mostrar el tiempo total de fabricación requerido
-    printf("Tiempo total de fabricación requerido: %d\n", tiempo_total);
     
-    // Mostrar los recursos necesarios
+    printf("Tiempo total de fabricacion requerido: %d\n", tiempo_total);
+    printf("Tiempo limite de fabricacion: %d\n", tiempoLimite);
     printf("Recursos necesarios:\n");
-    int recursos_suficientes = 1; // Suponemos que hay suficientes recursos
+    int recursos_suficientes = 1;
     for (int j = 0; j < MAX_RECURSOS; j++) {
         if (recursos_totales[j] > 0) {
             printf("   - Recurso %d: %d\n", j + 1, recursos_totales[j]);
             if (recursos_totales[j] > recursosLimite) {
-                recursos_suficientes = 0; // Marcamos que no hay suficientes recursos
-            }
-        }
-    }
-    // Verificar si se cumplen las condiciones
+                recursos_suficientes = 0;
+            }}}
+    // Comparación con el tiempo límite ingresado
     if (tiempo_total <= tiempoLimite && recursos_suficientes) {
-        printf("La fábrica puede cumplir con la demanda.\n");
+        printf("La fabrica puede cumplir con la demanda.\n");
     } else {
-        printf("La fábrica NO puede cumplir con la demanda.\n");
+        printf("La fabrica NO puede cumplir con la demanda.\n");
         if (tiempo_total > tiempoLimite) {
-            printf("   - Excede el tiempo de producción disponible.\n");
+            printf("   - Excede el tiempo de producción disponible. Tiempo total: %d, Tiempo límite: %d\n", tiempo_total, tiempoLimite);
         }
         if (!recursos_suficientes) {
-            printf("   - No hay suficientes recursos disponibles.\n");
-        }
-    }
-}
+            printf("   - No hay suficientes recursos disponibles.\n");}}}
