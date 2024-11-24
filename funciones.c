@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "funciones.h"
-
+ 
 #define MAX_PRODUCTOS 200
 #define MAX_CANTIDAD 200 // Límite maximo para cantidad
 #define MAX_TIEMPO 200 // Límite maximo para tiempo de fabricación
