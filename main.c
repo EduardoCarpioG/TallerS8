@@ -26,9 +26,8 @@ int main() {
         printf("2. Editar producto\n");
         printf("3. Eliminar producto\n");
         printf("4. Mostrar productos\n");
-        printf("5. Ingresar tiempo limite de fabricacion\n");
-        printf("6. Verificar cumplimiento de demanda\n");
-        printf("7. Salir\n");
+        printf("5. Verificar cumplimiento de demanda\n");
+        printf("6. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
         getchar();
