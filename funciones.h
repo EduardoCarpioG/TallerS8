@@ -19,4 +19,4 @@ void mostrarProductos(Producto productos[], int total_productos);
 void verificarCumplimiento(Producto productos[], int total_productos, int tiempoLimite, int recursosLimite);
 
 
-#endif // FUNCIONES_H
+#endif // FUNCIONES_H 

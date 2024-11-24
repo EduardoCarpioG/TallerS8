@@ -161,4 +161,4 @@ void verificarCumplimiento(Producto productos[], int total_productos, int tiempo
             printf("   - No hay suficientes recursos disponibles.\n");
         }
     }
-}
+} 
