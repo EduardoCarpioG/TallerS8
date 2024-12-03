@@ -1,24 +1,21 @@
 #include <stdio.h>
 #include <string.h>
 #include "funciones.h"
-#define MAX_PRODUCTOS 200
-#define MAX_CANTIDAD 200
-#define MAX_TIEMPO 200
-#define NOMBRE_LEN 50
-#define MAX_RECURSOS 10
 
-void ingresarProductos(Producto productos[], int *total_productos);
-void editarProducto(Producto productos[], int total_productos);
-void eliminarProducto(Producto productos[], int *total_productos);
-void mostrarProductos(Producto productos[], int total_productos);
-void verificarCumplimiento(Producto productos[], int total_productos, int tiempoLimite, int recursosLimite);
+#define MAX_PRODUCTOS 200
+#define NOMBRE_LEN 50
+#define RECURSO_LEN 50
 
 int main() {
-    Producto productos[MAX_PRODUCTOS];
+    char nombres[MAX_PRODUCTOS][NOMBRE_LEN];
+    int cantidades[MAX_PRODUCTOS];
+    int tiempos[MAX_PRODUCTOS];
+    char recursos[MAX_PRODUCTOS][RECURSO_LEN]; // Arreglo para almacenar los recursos necesarios como cadenas
+    int cantidadRecursos[MAX_PRODUCTOS]; // Arreglo para almacenar la cantidad de recursos
     int total_productos = 0;
     int opcion;
     int tiempoLimite = 100; // Tiempo límite total por defecto
-    int recursosLimite = 50;
+    int recursosLimite = 50; // Límite de recursos total por defecto
 
     do {
         printf("\nMenu:\n");
@@ -31,27 +28,27 @@ int main() {
         printf("7. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
-        getchar();
+        getchar(); // Limpiar el buffer
 
         switch (opcion) {
             case 1:
-                ingresarProductos(productos, &total_productos);
+                ingresarProductos(nombres, cantidades, tiempos, recursos, cantidadRecursos, &total_productos);
                 break;
             case 2:
-                editarProducto(productos, total_productos);
+                editarProducto(nombres, cantidades, tiempos, recursos, cantidadRecursos, total_productos);
                 break;
             case 3:
-                eliminarProducto(productos, &total_productos);
+                eliminarProducto(nombres, cantidades, tiempos, recursos, cantidadRecursos, &total_productos);
                 break;
             case 4:
-                mostrarProductos(productos, total_productos);
+                mostrarProductos(nombres, cantidades, tiempos, recursos, total_productos, cantidadRecursos);
                 break;
             case 5:
                 printf("Ingrese el tiempo limite de fabricacion: ");
                 scanf("%d", &tiempoLimite);
                 break;
             case 6:
-                verificarCumplimiento(productos, total_productos, tiempoLimite, recursosLimite);
+                verificarCumplimiento(cantidades, tiempos, cantidadRecursos, nombres, total_productos, tiempoLimite, recursosLimite);
                 break;
             case 7:
                 printf("Saliendo...\n");
@@ -62,4 +59,4 @@ int main() {
     } while (opcion != 7);
     
     return 0;
-} 
+}
